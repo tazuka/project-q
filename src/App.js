@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Login from './components/login/login';
+import SignUp from './components/signup/signup';
 
 
 class App extends Component {
@@ -19,6 +20,8 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path='/' component={Login} />
+            <Route exact path='/signup' component={SignUp} />
+
           </Switch>
         </BrowserRouter>
       </div>

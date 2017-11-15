@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "firebase": "^4.6.2",
+    "install": "^0.10.1",
+    "npm": "^5.5.1",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
     "react-redux": "^5.0.6",

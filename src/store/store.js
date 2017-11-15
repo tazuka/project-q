@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 export let initStore = () => {
 
   const reducer = combineReducers( {
-  
+
   });
 
   const store = createStore( reducer,
