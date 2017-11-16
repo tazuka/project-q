@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import * as firebase from 'firebase';
+import { Redirect } from 'react-router';
+import {firebaseLogin} from '../../actions/userAction';
+import {connect} from 'react-redux';
 
 import './login.css';
 
@@ -31,25 +33,14 @@ export class login extends React.Component {
 
 //OnClick event to submit login credentials to firebase
   onClick = (e) => {
-    firebase.auth().createUserWithEmailAndPassword(this.state.username, this.state.password).then(function() {
-      this.props.history.push('/path')
-}, function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // [START_EXCLUDE]
-    if (errorCode == 'auth/weak-password') {
-        alert('The password is too weak.');
-    } else {
-        console.error(error);
-    }
-    // [END_EXCLUDE]
-});
-
+    this.props.firebaseLogin(this.state.username, this.state.password)
 
   }
 
   render() {
+    if (this.props.user.isLoggedIn === true) {
+      return <Redirect to ='/dashboard' />
+    }
     return (<div>
               <h1>Qord - No more waiting time!</h1>
               <div id='wrapper'>
@@ -71,5 +62,19 @@ export class login extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.userResult
+  }
+}
 
-export default login;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    firebaseLogin: (username, password) => { dispatch(firebaseLogin(username, password)); },
+
+  }
+}
+
+
+export default connect (mapStateToProps, mapDispatchToProps)(login);

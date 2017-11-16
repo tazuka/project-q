@@ -30,7 +30,7 @@ export class signup extends React.Component {
     console.log(password);
   }
 
-//OnClick event to submit login credentials to firebase
+//OnClick event to submit sign up credentials to firebase
   onClick = (e) => {
     firebase.auth().createUserWithEmailAndPassword(this.state.username, this.state.password)
       .then((result, error) => {

@@ -11,6 +11,7 @@ import {
 import {connect} from 'react-redux';
 import Login from './components/login/login';
 import SignUp from './components/signup/signup';
+import Dashboard from './components/dashboard/dashboard';
 
 
 class App extends Component {
@@ -21,7 +22,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Login} />
             <Route exact path='/signup' component={SignUp} />
-
+            <Route exact path='/dashboard' component={Dashboard} />
           </Switch>
         </BrowserRouter>
       </div>
