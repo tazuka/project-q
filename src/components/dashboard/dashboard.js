@@ -3,6 +3,8 @@ import { Redirect } from 'react-router';
 import {connect} from 'react-redux';
 import * as firebase from 'firebase';
 
+import './dashboard.css';
+
 
 export class dashboard extends React.Component {
   constructor(props) {
@@ -44,7 +46,22 @@ onClick = (e) => {
       console.log(this.user);
       return <Redirect to ='/' />
     }
-    return (<div><button type='submit' onClick={this.onClick}>Log out</button></div>);
+    return (
+      <div>
+        <div id='topBar'>
+          Qord
+          <div id='logoutBtn'>
+            <button type='submit' onClick={this.onClick}>Log out</button>
+          </div>
+        </div>
+        <div id='sideBar'>
+          <ul>
+            <li>Sales Summary</li>
+            <li>Menu</li>
+          </ul>
+        </div>
+      </div>
+    );
   }
 }
 

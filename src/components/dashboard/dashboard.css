@@ -1,0 +1,59 @@
+
+#sideBar {
+  width: 200px;
+  height: 100vh;
+  margin: 0px;
+  box-shadow: 0px 6px 15px 2px rgba(0,0,0,0.1);
+  background-color: black;
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+  padding: 15px;
+  overflow: hidden;
+}
+
+li {
+  text-align: left;
+  padding: 5px;
+}
+
+#topBar {
+  width: 100%;
+  height: 30px;
+  float: left;
+  text-align: left;
+  font-size: 22px;
+  padding: 10px;
+  margin: 0px;
+  vertical-align: baseline;
+  box-shadow: 0px 6px 15px 2px rgba(0,0,0,0.1);
+  background-color: black;
+  color: Yellow;
+}
+
+#logoutBtn {
+  float: right;
+  padding-right: 20px;
+}
+
+#container {
+  width: 20%;
+  height: 500px;
+  margin: 10% auto;
+  box-shadow: 0px 6px 15px 2px rgba(0,0,0,0.4);
+  padding-top: 20px;
+}
+
+#loginFields {
+  display: inline-block;
+  margin-top: 25%;
+  text-align: left;
+}
+
+#buttons {
+  text-decoration: none;
+  cursor: default;
+  color: black;
+}
