@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { withRouter } from 'react-router-dom'
 import { Redirect } from 'react-router';
 import * as firebase from 'firebase';
 
@@ -61,7 +60,6 @@ export class signup extends React.Component {
                   <button type='button' onClick={this.onClick}>Sign Up</button>
                 </div>
               </div>
-
 
             </div>);
 

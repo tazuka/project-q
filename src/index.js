@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 import { initStore } from './store/store'
 import firebase from 'firebase';
   // Initialize Firebase

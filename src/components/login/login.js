@@ -3,18 +3,28 @@ import {Link} from 'react-router-dom';
 import { Redirect } from 'react-router';
 import {firebaseLogin} from '../../actions/userAction';
 import {connect} from 'react-redux';
+import * as firebase from 'firebase';
 
 import './login.css';
 
 export class login extends React.Component {
   constructor(props) {
     super(props);
-
+    this.user = localStorage.getItem('user');
     //Initialize starting state
     this.state = {
       username:"",
-      password:""
+      password:"",
+      user: false
     }
+  }
+
+  componentWillMount() {
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.setState({user: true})
+    }
+
   }
 
 
@@ -33,12 +43,38 @@ export class login extends React.Component {
 
 //OnClick event to submit login credentials to firebase
   onClick = (e) => {
-    this.props.firebaseLogin(this.state.username, this.state.password)
-
+    // this.props.firebaseLogin(this.state.username, this.state.password)
+    firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password)
+      .then((response) => {
+        firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log(user);
+        localStorage.setItem('user', user);
+        this.setState({user: true});
+      }
+    });
+    })
+      .catch((error)=> {
+        console.error("Login Unsuccessful")
+    });
   }
 
+
+
+// checkUserExist = () => {
+//   console.log('58');
+//     if (this.user) {
+//       console.log(this.user);
+//       return (<Redirect to ='/dashboard' />);
+//     }
+//
+// }
+
+
+
   render() {
-    if (this.props.user.isLoggedIn === true) {
+    console.log(this.state.user);
+    if (this.state.user === true) {
       return <Redirect to ='/dashboard' />
     }
     return (<div>

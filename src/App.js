@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Redirect } from 'react-router';
 import {
   BrowserRouter,
-  Redirect,
   Switch,
-  Link,
   Route
 } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Login from './components/login/login';
 import SignUp from './components/signup/signup';
 import Dashboard from './components/dashboard/dashboard';
+
+
 
 
 class App extends Component {
@@ -29,5 +29,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;
