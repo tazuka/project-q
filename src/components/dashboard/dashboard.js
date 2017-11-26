@@ -7,22 +7,44 @@ import * as firebase from 'firebase';
 export class dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.user = localStorage.getItem('user');
+    this.state = {
+      user: false
+    }
     // console.log(user);
 
   }
 
+  componentWillMount() {
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.setState({user: true})
+    }
 
+  }
 
+onClick = (e) => {
+  console.log(this.state.user);
+  firebase.auth().signOut()
+    .then((response) => {
+    console.log(this.state.user);
+  localStorage.removeItem('user');
+  this.setState({user: false})
+  console.log(this.state.user);
+}).catch(function(error) {
+
+});
+
+}
 
 
   render() {
-    if (!this.user) {
+    console.log('log out')
+    console.log(this.state.user);
+    if (this.state.user === false) {
       console.log(this.user);
       return <Redirect to ='/' />
     }
-    console.log(this.user);
-    return (<div><button type='submit' onClick='this.onClick()'>Log out</button></div>);
+    return (<div><button type='submit' onClick={this.onClick}>Log out</button></div>);
   }
 }
 

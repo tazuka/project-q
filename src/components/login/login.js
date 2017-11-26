@@ -61,17 +61,6 @@ export class login extends React.Component {
 
 
 
-// checkUserExist = () => {
-//   console.log('58');
-//     if (this.user) {
-//       console.log(this.user);
-//       return (<Redirect to ='/dashboard' />);
-//     }
-//
-// }
-
-
-
   render() {
     console.log(this.state.user);
     if (this.state.user === true) {
