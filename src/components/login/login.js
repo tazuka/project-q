@@ -67,7 +67,7 @@ export class login extends React.Component {
       return <Redirect to ='/dashboard' />
     }
     return (<div>
-              <h1>Qord - No more waiting time!</h1>
+              <h1>QordX - No more waiting time!</h1>
               <div id='wrapper'>
                 <h2>Login here!</h2>
                 <div id='loginFields'>
