@@ -1,5 +1,6 @@
+
 const initialState = {
-  isLoggedIn: false
+  isLoggedIn: ""
 }
 
 const userReducer = (state = initialState, action) => {
@@ -8,8 +9,7 @@ const userReducer = (state = initialState, action) => {
     console.log('reducer');
       return {
         ...state,
-        isLoggedIn: true,
-        user: action.user
+        isLoggedIn: action.user,
       }
       break;
 

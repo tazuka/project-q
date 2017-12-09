@@ -8,18 +8,10 @@ import * as firebase from 'firebase';
 import './login.css';
 
 export class login extends React.Component {
-  constructor(props) {
-    super(props);
-    //Initialize starting state
-    this.state = {
-      username:"",
-      password:"",
-      user: false,
-      isAdmin: false
-    }
-  }
+
 
   componentWillMount() {
+    console.log(this.props.user);
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       this.setState({user: true})
@@ -44,33 +36,18 @@ export class login extends React.Component {
 
 //OnClick event to submit login credentials to firebase
   onClick = (e) => {
-    firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password)
-      .then((response) => {
-        console.log(response);
-        if (response) {
-          localStorage.setItem('user', JSON.stringify(response));
-          this.setState({user: true});
-          const user = JSON.parse(localStorage.getItem('user'));
-          console.log(user.email);
-          if (user.email === 'admin@qord.com'){
-            this.setState({isAdmin: true});
-          }
-        }
-
-      })
-      .catch((error)=> {
-        console.error("Login Unsuccessful")
-      });
+    this.props.firebaseLogin(this.state.username, this.state.password)
   }
 
 
 
   render() {
-    console.log(this.state.user);
-    if (this.state.user === true && this.state.isAdmin === false) {
-      return <Redirect to ='/dashboard' />
-    } else if (this.state.user === true && this.state.isAdmin === true){
+    if (this.props.user.isLoggedIn.email === "admin@qord.com") {
       return <Redirect to ='/admindashboard' />
+
+    } else if (this.props.user.isLoggedIn !== "") {
+      return <Redirect to ='/dashboard' />
+
     }
     return (<div>
               <h1>QordX - No more waiting time!</h1>

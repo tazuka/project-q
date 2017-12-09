@@ -12,12 +12,24 @@ import SignUp from './components/signup/signup';
 import Dashboard from './components/dashboard/dashboard';
 import AdminDashboard from './components/admindashboard/admindashboard';
 import Vendor from './components/vendor/vendor';
-
-
+import {loginSuccess} from './actions/userAction';
 
 
 class App extends Component {
+
+
+  componentWillMount() {
+
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
+    if (user) {
+      this.props.loginSuccess(user);
+    }
+  }
+
   render() {
+    console.log("im at appjs");
+
     return (
       <div className="App">
         <BrowserRouter>
@@ -35,4 +47,12 @@ class App extends Component {
 }
 
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginSuccess: (user) => { dispatch(loginSuccess(user)); },
+
+  }
+}
+
+
+export default connect (null, mapDispatchToProps)(App);
