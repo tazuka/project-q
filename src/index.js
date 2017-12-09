@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { initStore } from './store/store'
 import firebase from 'firebase';
   // Initialize Firebase
-  var config = {
+  const config = {
     apiKey: "AIzaSyBD5YQdbXN61sK0JpnLSsaHAP0KDp9M1yo",
     authDomain: "project-q-ac6e9.firebaseapp.com",
     databaseURL: "https://project-q-ac6e9.firebaseio.com",
@@ -16,6 +16,8 @@ import firebase from 'firebase';
     messagingSenderId: "755380509557"
   };
   firebase.initializeApp(config);
+
+
 
 
 const store = initStore();

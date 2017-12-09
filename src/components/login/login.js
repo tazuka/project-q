@@ -10,20 +10,21 @@ import './login.css';
 export class login extends React.Component {
   constructor(props) {
     super(props);
-    this.user = localStorage.getItem('user');
     //Initialize starting state
     this.state = {
       username:"",
       password:"",
-      user: false
+      user: false,
+      isAdmin: false
     }
   }
 
   componentWillMount() {
-    const user = localStorage.getItem('user');
+    const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       this.setState({user: true})
     }
+
 
   }
 
@@ -43,28 +44,33 @@ export class login extends React.Component {
 
 //OnClick event to submit login credentials to firebase
   onClick = (e) => {
-    // this.props.firebaseLogin(this.state.username, this.state.password)
     firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password)
       .then((response) => {
-        firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        console.log(user);
-        localStorage.setItem('user', user);
-        this.setState({user: true});
-      }
-    });
-    })
+        console.log(response);
+        if (response) {
+          localStorage.setItem('user', JSON.stringify(response));
+          this.setState({user: true});
+          const user = JSON.parse(localStorage.getItem('user'));
+          console.log(user.email);
+          if (user.email === 'admin@qord.com'){
+            this.setState({isAdmin: true});
+          }
+        }
+
+      })
       .catch((error)=> {
         console.error("Login Unsuccessful")
-    });
+      });
   }
 
 
 
   render() {
     console.log(this.state.user);
-    if (this.state.user === true) {
+    if (this.state.user === true && this.state.isAdmin === false) {
       return <Redirect to ='/dashboard' />
+    } else if (this.state.user === true && this.state.isAdmin === true){
+      return <Redirect to ='/admindashboard' />
     }
     return (<div>
               <h1>QordX - No more waiting time!</h1>

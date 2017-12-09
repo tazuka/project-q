@@ -36,6 +36,7 @@ export class signup extends React.Component {
         if (error){
           console.log(error)
         } else {
+
           this.setState({redirect: true})
         }
 
@@ -51,7 +52,10 @@ export class signup extends React.Component {
               <div id='wrapper'>
                 <h2>Sign Up Here!</h2>
                 <div id='loginFields'>
-                  <p>User Name:<br />
+                  <p>Name:<br />
+                    <input type='text' onChange={this.handleUser}/>
+                  </p>
+                  <p>Email:<br />
                     <input type='email' onChange={this.handleUser}/>
                   </p>
                   <p>Password:<br />
