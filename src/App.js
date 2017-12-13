@@ -12,6 +12,7 @@ import SignUp from './components/signup/signup';
 import Dashboard from './components/dashboard/dashboard';
 import AdminDashboard from './components/admindashboard/admindashboard';
 import Vendor from './components/vendor/vendor';
+import AddVendor from './components/addvendor/addvendor';
 import {loginSuccess} from './actions/userAction';
 
 
@@ -38,7 +39,7 @@ class App extends Component {
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/dashboard' component={Dashboard} />
             <Route exact path='/admindashboard' component={AdminDashboard} />
-            <Route exact path='/admindashboard/:id' component={Vendor} />
+            <Route exact path='/addvendor' component={AddVendor} />
           </Switch>
         </BrowserRouter>
       </div>
