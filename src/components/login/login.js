@@ -50,7 +50,7 @@ export class login extends React.Component {
 
     }
     return (<div>
-              <h1>QordX - No more waiting time!</h1>
+              <h1>QordX</h1>
               <div id='wrapper'>
                 <h2>Login here!</h2>
                 <div id='loginFields'>
